@@ -1,10 +1,10 @@
 <template>
     <div class="column">
-        <span class="column__delete" @click="deleteColumn">✖</span>
+        <DeleteButton @click.native="deleteColumn" />
 
         <div class="column__title" contenteditable="true" @input="updateTitle">{{ column.title }}</div>
 
-        <Card v-for="card in column.cards" :key="card.id" :card="card"></Card>
+        <Card v-for="card in column.cards" :key="card.id" :card="card" @deleted="removeCard(card)" />
 
         <AddCardButton @click.native="addNewCard" />
     </div>
@@ -13,9 +13,10 @@
 <script>
 import AddCardButton from "./AddCardButton.vue";
 import Card from "./Card.vue";
+import DeleteButton from "./DeleteButton.vue";
 
 export default {
-    components: {Card, AddCardButton},
+    components: {DeleteButton, Card, AddCardButton},
     props: ['column'],
     name: "Column",
     methods: {
@@ -35,6 +36,10 @@ export default {
         deleteColumn() {
             axios.delete('columns/' + this.column.id)
             this.$emit('deleted')
+        },
+
+        removeCard(card) {
+            this.column.cards = _.reject(this.column.cards, card);
         }
     }
 }

@@ -27,7 +27,12 @@ class ColumnsService
 
     public function destroy(Column $column): void
     {
-        $column->delete();
+        if ($column->cards()->exists()) {
+            //soft-delete
+            $column->delete();
+        } else {
+            $column->forceDelete();
+        }
     }
 
     public function shiftPositionsAfter(int $position): void

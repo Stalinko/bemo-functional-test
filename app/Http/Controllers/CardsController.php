@@ -32,4 +32,10 @@ class CardsController extends Controller
 
         return $this->cardsService->updateCard($card, $request->title);
     }
+
+    public function destroy(Card $card): array
+    {
+        $this->cardsService->destroy($card);
+        return ['success' => true];
+    }
 }

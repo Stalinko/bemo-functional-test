@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\CardsService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -37,6 +38,10 @@ class Card extends Model
         //Fill up the "position" when adding a new card
         self::creating(static function (self $card) {
             $card->position = $card->column->cards()->count() + 1;
+        });
+
+        self::deleted(static function (self $card) {
+            app(CardsService::class)->shiftPositionsAfter($card->position);
         });
     }
 

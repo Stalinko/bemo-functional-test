@@ -25,6 +25,7 @@ Route::delete('columns/{column}', [ColumnsController::class, 'destroy']);
 //Card Routes
 Route::post('columns/{column}/cards', [CardsController::class, 'create']);
 Route::put('cards/{card}', [CardsController::class, 'update']);
+Route::delete('cards/{card}', [CardsController::class, 'destroy']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

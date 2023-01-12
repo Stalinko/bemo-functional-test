@@ -25,4 +25,14 @@ class CardsService
 
         return $card;
     }
+
+    public function destroy(Card $card): void
+    {
+        $card->delete();
+    }
+
+    public function shiftPositionsAfter(int $position): void
+    {
+        Card::where('position', '>', $position)->update(['position' => \DB::raw('position - 1')]);
+    }
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="board">
-        <Column v-for="column in columns" :column="column" :key="column.id"></Column>
+        <Column v-for="column in columns" :column="column" :key="column.id" @deleted="removeColumn(column)"></Column>
         <AddColumnButton @click.native="addColumn()" />
     </div>
 </template>
@@ -32,6 +32,10 @@ export default {
 
                 this.$data.columns.push(column)
             })
+        },
+
+        removeColumn(column) {
+            this.columns = _.reject(this.columns, column)
         }
     }
 }

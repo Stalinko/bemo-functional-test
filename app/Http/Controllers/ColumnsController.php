@@ -28,4 +28,13 @@ class ColumnsController extends Controller
 
         return $this->columnsService->createNewColumn($request->title);
     }
+
+    public function update(Request $request, Column $column): Column
+    {
+        $this->validate($request, [
+            'title' => 'required|string',
+        ]);
+
+        return $this->columnsService->updateColumn($column, $request->title);
+    }
 }

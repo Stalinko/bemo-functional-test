@@ -21,6 +21,18 @@ body {
     background: #efefef;
 }
 
+.column__title {
+    border: 1px solid transparent; //this is necessary to prevent flicker effect
+
+    &:hover, &:focus {
+        cursor: text;
+        border: 1px solid grey;
+        background: white;
+        outline: none;
+    }
+}
+
+
 .add-column-button {
     margin-left: 20px;
     border: 1px solid #c7c7c7;

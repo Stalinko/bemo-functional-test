@@ -16,4 +16,12 @@ class ColumnsService
     {
         return Column::create(['title' => $title]);
     }
+
+    public function updateColumn(Column $column, string $title): Column
+    {
+        $column->title = $title;
+        $column->save();
+
+        return $column;
+    }
 }

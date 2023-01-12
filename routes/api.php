@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('columns', [ColumnsController::class, 'index']);
 Route::post('columns', [ColumnsController::class, 'create']);
+Route::put('columns/{column}', [ColumnsController::class, 'update']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

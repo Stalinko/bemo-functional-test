@@ -11,9 +11,7 @@ body {
 
 .board {
     padding: 20px;
-
-    max-width: 100vw;
-    max-height: 100vh;
+    width: fit-content;
 
     display: flex;
     align-items: start;

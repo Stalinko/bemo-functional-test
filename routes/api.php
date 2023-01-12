@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\CardsController;
 use App\Http\Controllers\ColumnsController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +27,5 @@ Route::put('cards/{card}', [CardsController::class, 'update']);
 Route::delete('cards/{card}', [CardsController::class, 'destroy']);
 Route::put('cards/{card}/move', [CardsController::class, 'move']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Special router
+Route::middleware('access-token')->get('list-cards', [CardsController::class, 'listCards']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Card;
 use App\Models\Column;
 use App\Services\CardsService;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class CardsController extends Controller
@@ -48,5 +49,15 @@ class CardsController extends Controller
     {
         $this->cardsService->destroy($card);
         return ['success' => true];
+    }
+
+    public function listCards(Request $request): Collection
+    {
+        $this->validate($request, [
+            'date' => 'sometimes|date_format:Y-m-d',
+            'status' => 'sometimes|in:0,1'
+        ]);
+
+        return $this->cardsService->listCards($request->date, $request->status);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Card;
 use App\Models\Column;
+use Illuminate\Database\Eloquent\Collection;
 
 class CardsService
 {
@@ -55,5 +56,27 @@ class CardsService
         Card::where('position', '>=', $position)
             ->where('column_id', $column_id)
             ->update(['position' => \DB::raw('position + 1')]);
+    }
+
+    /**
+     * @param string|null $date
+     * @param int|null    $status
+     * @return Collection
+     * @noinspection StaticInvocationViaThisInspection
+     */
+    public function listCards(?string $date, ?int $status): Collection
+    {
+        $query = Card::query();
+
+        if ($date) {
+            $query = $query->whereDate('created_at', $date);
+        }
+        if ($status === 0) {
+            $query = $query->onlyTrashed();
+        } elseif (is_null($status)) {
+            $query = $query->withTrashed();
+        }
+
+        return $query->get();
     }
 }

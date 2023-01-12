@@ -10,6 +10,7 @@ class ExportDbService
     {
         $path = $this->getTmpFilename();
         MySql::create()
+            ->setDumpBinaryPath(env('MYSQLDUMP_PATH', ''))
             ->setDbName(env('DB_DATABASE'))
             ->setUserName(env('DB_USERNAME'))
             ->setPassword(env('DB_PASSWORD'))

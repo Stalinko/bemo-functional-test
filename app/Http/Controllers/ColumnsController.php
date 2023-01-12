@@ -37,4 +37,10 @@ class ColumnsController extends Controller
 
         return $this->columnsService->updateColumn($column, $request->title);
     }
+
+    public function destroy(Column $column): array
+    {
+        $this->columnsService->destroy($column);
+        return ['success' => true];
+    }
 }

@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Services\ColumnsService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int id
@@ -19,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Column extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $visible = ['id', 'position', 'title', 'cards'];
     protected $fillable = ['title'];
@@ -36,6 +38,13 @@ class Column extends Model
         //Fill up the "position" when adding a new column
         self::creating(static function (self $column) {
             $column->position = self::count() + 1;
+        });
+
+        self::deleted(static function (self $column) {
+            app(ColumnsService::class)->shiftPositionsAfter($column->position);
+
+            //we need to soft-delete all nested cards
+            $column->cards()->delete();
         });
     }
 

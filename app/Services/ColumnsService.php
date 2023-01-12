@@ -24,4 +24,14 @@ class ColumnsService
 
         return $column;
     }
+
+    public function destroy(Column $column): void
+    {
+        $column->delete();
+    }
+
+    public function shiftPositionsAfter(int $position): void
+    {
+        Column::where('position', '>', $position)->update(['position' => \DB::raw('position - 1')]);
+    }
 }

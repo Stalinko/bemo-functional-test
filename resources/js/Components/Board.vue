@@ -26,7 +26,12 @@ export default {
         },
 
         addColumn() {
-            axios.post('columns', {title: 'New Column'}).then(response => this.$data.columns.push(response.data))
+            axios.post('columns', {title: 'New Column'}).then(response => {
+                const column = response.data;
+                column.cards = [];
+
+                this.$data.columns.push(column)
+            })
         }
     }
 }

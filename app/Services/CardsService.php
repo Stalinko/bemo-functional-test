@@ -25,13 +25,35 @@ class CardsService
         return $card;
     }
 
+    public function moveCard(Card $card, int $column_id, int $position): Card
+    {
+        \DB::transaction(function () use ($card, $column_id, $position) {
+            $this->shiftPositionsForward($column_id, $position);
+
+            $card->column_id = $column_id;
+            $card->position = $position;
+            $card->save();
+        });
+
+        return $card;
+    }
+
     public function destroy(Card $card): void
     {
         $card->delete();
     }
 
-    public function shiftPositionsAfter(int $position): void
+    public function shiftPositionsBackwards(int $column_id, int $position): void
     {
-        Card::where('position', '>', $position)->update(['position' => \DB::raw('position - 1')]);
+        Card::where('position', '>', $position)
+            ->where('column_id', $column_id)
+            ->update(['position' => \DB::raw('position - 1')]);
+    }
+
+    public function shiftPositionsForward(int $column_id, int $position): void
+    {
+        Card::where('position', '>=', $position)
+            ->where('column_id', $column_id)
+            ->update(['position' => \DB::raw('position + 1')]);
     }
 }

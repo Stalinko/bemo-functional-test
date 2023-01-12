@@ -35,7 +35,7 @@ class ColumnsService
         }
     }
 
-    public function shiftPositionsAfter(int $position): void
+    public function shiftPositionsBackwards(int $position): void
     {
         Column::where('position', '>', $position)->update(['position' => \DB::raw('position - 1')]);
     }

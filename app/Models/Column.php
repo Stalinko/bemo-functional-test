@@ -41,7 +41,7 @@ class Column extends Model
         });
 
         self::deleted(static function (self $column) {
-            app(ColumnsService::class)->shiftPositionsAfter($column->position);
+            app(ColumnsService::class)->shiftPositionsBackwards($column->position);
 
             //we need to soft-delete all nested cards
             $column->cards()->delete();

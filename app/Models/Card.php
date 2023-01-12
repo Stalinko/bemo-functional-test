@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int id
+ * @property int column_id
  * @property int position
  * @property ?string title
  * @property ?string description
@@ -28,6 +29,7 @@ class Card extends Model
 
     protected $casts = [
         'id' => 'int',
+        'column_id' => 'int',
         'position' => 'int',
     ];
 
@@ -41,7 +43,7 @@ class Card extends Model
         });
 
         self::deleted(static function (self $card) {
-            app(CardsService::class)->shiftPositionsAfter($card->position);
+            app(CardsService::class)->shiftPositionsBackwards($card->column_id, $card->position);
         });
     }
 

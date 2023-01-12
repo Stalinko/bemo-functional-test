@@ -34,6 +34,16 @@ class CardsController extends Controller
         return $this->cardsService->updateCard($card, $request->all(['title', 'description']));
     }
 
+    public function move(Request $request, Card $card): Card
+    {
+        $this->validate($request, [
+            'column_id' => 'required|int|exists:columns,id',
+            'position' => 'required|int|min:1',
+        ]);
+
+        return $this->cardsService->moveCard($card, $request->column_id, $request->position);
+    }
+
     public function destroy(Card $card): array
     {
         $this->cardsService->destroy($card);

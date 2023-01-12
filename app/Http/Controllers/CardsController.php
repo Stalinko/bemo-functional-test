@@ -28,9 +28,10 @@ class CardsController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|string',
+            'description' => 'nullable|string',
         ]);
 
-        return $this->cardsService->updateCard($card, $request->title);
+        return $this->cardsService->updateCard($card, $request->all(['title', 'description']));
     }
 
     public function destroy(Card $card): array

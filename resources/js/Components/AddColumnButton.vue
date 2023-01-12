@@ -7,7 +7,3 @@ export default {
     name: "AddColumnButton"
 }
 </script>
-
-<style scoped>
-
-</style>

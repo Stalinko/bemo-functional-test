@@ -24,7 +24,7 @@ class Card extends Model
     use HasFactory, SoftDeletes;
 
     protected $visible = ['id', 'position', 'title', 'description'];
-    protected $fillable = ['title'];
+    protected $fillable = ['title', 'description'];
 
     protected $casts = [
         'id' => 'int',

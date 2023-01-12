@@ -18,10 +18,9 @@ class CardsService
         return $column->cards()->create(['title' => $title]);
     }
 
-    public function updateCard(Card $card, string $title): Card
+    public function updateCard(Card $card, array $data): Card
     {
-        $card->title = $title;
-        $card->save();
+        $card->update($data);
 
         return $card;
     }

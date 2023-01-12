@@ -7,7 +7,3 @@ export default {
     name: "AddCardButton"
 }
 </script>
-
-<style scoped>
-
-</style>

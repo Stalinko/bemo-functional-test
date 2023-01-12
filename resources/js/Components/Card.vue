@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card" @click="showModal">
         <DeleteButton @click.native="deleteCard" />
 
         {{ card.title }}
@@ -8,6 +8,7 @@
 
 <script>
 import DeleteButton from "./DeleteButton.vue";
+import CardModal from "./CardModal.vue";
 
 export default {
     components: {DeleteButton},
@@ -18,11 +19,14 @@ export default {
         deleteCard() {
             axios.delete('cards/' + this.card.id)
             this.$emit('deleted')
+        },
+
+        showModal() {
+            this.$modal.show(
+                CardModal,
+                { card: this.card }
+            )
         }
     }
 }
 </script>
-
-<style scoped>
-
-</style>

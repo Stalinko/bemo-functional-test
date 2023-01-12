@@ -1,0 +1,45 @@
+.card {
+    position: relative;
+    margin-top: 10px;
+    background: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+
+    &:hover > .delete-button {
+        display: inline-block;
+    }
+}
+
+.card-modal {
+    height: 100%;
+    padding: 10px 20px;
+    overflow-y: auto;
+    position: relative;
+
+    background: $light-grey-background;
+}
+
+.card-modal__header {
+    margin: 0;
+
+    &:focus {
+        background: white;
+    }
+}
+
+.card-modal__description {
+    white-space: pre-line;
+
+    &:focus {
+        background: white;
+
+        &:after {
+            content: '';
+        }
+    }
+
+    &:empty:after {
+        content: 'Click to edit';
+        font-style: italic;
+    }
+}

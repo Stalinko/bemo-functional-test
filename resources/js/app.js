@@ -1,6 +1,7 @@
 import './bootstrap';
 import Vue from 'vue'
 import Board from "./Components/Board.vue";
+import VModal from 'vue-js-modal'
 
 const app = new Vue({
     el: '#app',
@@ -9,3 +10,5 @@ const app = new Vue({
         Board
     }
 });
+
+Vue.use(VModal)

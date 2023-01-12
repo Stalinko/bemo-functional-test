@@ -18,3 +18,5 @@ yarn-error.log
 /.vscode
 public/js/app.js
 public/css/app.css
+_ide_helper.php
+_ide_helper_models.php

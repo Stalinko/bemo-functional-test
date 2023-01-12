@@ -21,6 +21,8 @@ class Card extends Model
 {
     use HasFactory;
 
+    protected $visible = ['id', 'position', 'title', 'description'];
+
     protected $casts = [
         'id' => 'int',
         'position' => 'int',

@@ -25,9 +25,6 @@
     </head>
     <body class="antialiased">
         <div id="app">
-            @verbatim
-            {{ message }}
-            @endverbatim
         </div>
     </body>
 </html>

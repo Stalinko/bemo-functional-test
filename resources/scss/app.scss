@@ -1,3 +1,36 @@
 body {
-    background: blue;
+    background: #d29034;
+}
+
+.board {
+    padding: 20px;
+
+    max-width: 100vw;
+    max-height: 100vh;
+
+    display: flex;
+    align-items: start;
+}
+
+.column {
+    margin-left: 20px;
+    border: 1px solid #c7c7c7;
+    width: 200px;
+    border-radius: 10px;
+    padding: 15px;
+    background: #efefef;
+}
+
+.add-column-button {
+    margin-left: 20px;
+    border: 1px solid #c7c7c7;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    background: #efefef;
+    font-size: 40px;
+
+    &:hover {
+        background: darken(#efefef, 10%);
+    }
 }

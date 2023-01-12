@@ -21,10 +21,23 @@ class Column extends Model
 {
     use HasFactory;
 
+    protected $visible = ['id', 'position', 'title', 'cards'];
+    protected $fillable = ['title'];
+
     protected $casts = [
         'id' => 'int',
         'position' => 'int',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        //Fill up the "position" when adding a new column
+        self::creating(static function (self $column) {
+            $column->position = self::count() + 1;
+        });
+    }
 
     public function cards(): \Illuminate\Database\Eloquent\Relations\HasMany
     {

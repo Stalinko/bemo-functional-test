@@ -1,9 +1,11 @@
 import './bootstrap';
 import Vue from 'vue'
+import Board from "./Components/Board.vue";
 
 const app = new Vue({
     el: '#app',
-    data: {
-        message: 'Hello Vue!'
+    template: '<Board />',
+    components: {
+        Board
     }
 });

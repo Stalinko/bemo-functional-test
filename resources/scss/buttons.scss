@@ -64,3 +64,18 @@
         background: darken($light-grey-background, 10%);
     }
 }
+
+.export-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: inline-block;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background: white;
+}
+.export-button__img {
+    height: 20px;
+    margin-right: 5px;
+}

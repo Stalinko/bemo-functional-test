@@ -2,15 +2,18 @@
     <div class="board">
         <Column v-for="column in columns" :column="column" :key="column.id" @deleted="removeColumn(column)"></Column>
         <AddColumnButton @click.native="addColumn()" />
+
+        <ExportButton />
     </div>
 </template>
 
 <script>
 import Column from "./Column.vue";
 import AddColumnButton from "./AddColumnButton.vue";
+import ExportButton from "./ExportButton.vue";
 
 export default {
-    components: {AddColumnButton, Column},
+    components: {ExportButton, AddColumnButton, Column},
     data: () => ({
         columns: []
     }),

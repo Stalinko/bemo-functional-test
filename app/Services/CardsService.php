@@ -77,6 +77,6 @@ class CardsService
             $query = $query->withTrashed();
         }
 
-        return $query->get();
+        return $query->get()->makeVisible(['created_at', 'deleted_at']);
     }
 }
